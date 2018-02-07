@@ -1,0 +1,23 @@
+<div class="container">
+	<h1 class="text-center"><%= @category.name %></h1>
+	<h5>Blog posts in this category</h5>
+	<div class="row">
+		<% if @category.posts.count > 0 %>
+			<% @category.posts.each do |post| %>
+				<div class="card mb-3 col-sm-4">
+					<div class="card-header">
+						<%= link_to post.title, post_path(post) %>
+					</div>
+					<div class="card-body">
+						<%= post.body %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<p>No posts in this category yet!</p>
+		<% end %>
+	
+	</div>
+
+	 <p> <%= link_to 'Edit Category', edit_category_path(@category), :class => "text-warning" %> </p>
+</div>

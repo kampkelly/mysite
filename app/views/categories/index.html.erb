@@ -1,0 +1,13 @@
+<div class="container">
+	<h1>List Of Categories</h1>
+	<ul class="list-group list-unstyled w-50">
+		<% @categories.each do |c| %>
+			<li class="list-group-item bg-dark mb-3"><%= link_to c.name, category_path(c), :class=> 'text-white' %>
+				<%= link_to 'Edit', edit_category_path(c), :class=> 'text-warning' %>
+			 <%= link_to "Delete", category_path(c), :confirm => "Are you sure you want to delete?", :method => :delete, :class=> 'text-danger' %>
+			 	
+			 </li>
+		<% end %>
+	</ul>
+	
+</div>

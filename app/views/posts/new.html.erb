@@ -1,0 +1,33 @@
+<div class="container">
+	<%= link_to 'All Posts', posts_path, :class=> 'text-primary' %>
+	<h1 class="text-center">Create New Post</h1>
+	
+	<div class="row">
+		<div class="col-sm-7 mx-auto">
+		 <%= form_for @post, html: { multipart: true, class: 'form-horizontal' } do |f| %>
+		      <div class="field form-group form-row">
+		        <%= f.label :title, class: 'col-sm-3' %><br />
+		        <%= f.text_field :title, class: 'form-control col-sm-7', placeholder: 'Post Title' %>
+		      </div>
+
+		      <div class="field form-group form-row">
+		        <%= f.label :body, class: 'col-sm-3' %><br />
+		        <%= f.text_area :body, class: 'form-control col-sm-7', placeholder: 'Post Description' %>
+		      </div>
+
+		      <div class="field form-group form-row">
+		        <%= f.label :category, class: 'col-sm-3' %><br />
+		        <%= select("post", "category_id", Category.all.collect {|p| [ p.name, p.id ] }, {include_blank: false}, class: 'form-control col-sm-7' ) %>
+		      </div>
+
+		       <%= f.hidden_field :user_id, :value => current_user.id %>
+		  
+
+		    <div class="field form-group form-row">
+		        <div class="col-sm-3"></div>
+		        <%= f.submit "Add", class: 'col-sm-7 btn btn-warning' %>
+		      </div>
+		   <% end %>
+		</div>
+	</div>
+</div>

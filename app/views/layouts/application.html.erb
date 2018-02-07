@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mysite</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+
+  <body>
+  	<% unless flash.empty? %>
+	     <script type="text/javascript">
+	          <% flash.each do |f| %>
+		      <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+		     	 toastr['<%= type %>']('<%= f[1] %>');
+		   <% end %>
+	     </script>
+	<% end %>
+  <%= render "partials/header" %>
+  <% if flash[:notice] %>
+    <div class="alert-success w-25"><%= flash[:notice] %></div>
+  <% end %>
+   <% if flash[:delete] %>
+    <div class="alert-danger w-25"><%= flash[:delete] %></div>
+  <% end %>
+   <% if user_signed_in? %>
+      <% else %>
+    <h5 class="text-danger">Please signin to create and manage posts and categories</h5>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<div class="container">
+	<h1 class="text-center">Blog Posts</h1>
+	<ul class="list-group">
+		
+		<% @posts.each do |post| %>
+		<li class="list-group-item mb-3 w-75">
+			<span class="float-right small">Category: <%= link_to post.category.name, category_path(post.category) %> </span>
+			<%= link_to post.title, post_path(post) %> <br>
+			<% if user_signed_in? %>
+			<%= link_to 'Edit', edit_post_path(post), :class=> 'small text-warning mr-2' %>
+			 <%= link_to "Delete", post_path(post), :confirm => "Are you sure you want to delete?", :method => :delete, :class=> 'small text-danger' %>
+			<% else %>
+				<small class="text-danger">Signing to see action buttons</small>
+			<% end %>
+		</li>
+	<% end %>
+	</ul>	
+
+</div>
