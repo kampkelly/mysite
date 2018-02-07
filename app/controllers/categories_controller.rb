@@ -8,10 +8,6 @@ class CategoriesController < ApplicationController
   end
 
   def create
-  	# def categories_params
-     #       params.require(:member).permit(:name, :bank, :act_no, :email, :fone_no, :user_id)
-      #  end
-        
         @categories = Category.new(categories_params)
         if @categories.save
           flash[:notice] = 'Category Created'
