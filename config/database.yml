@@ -46,9 +46,12 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#
+# mysql://bdcdfb57806a30:27492de9@us-cdbr-iron-east-05.cleardb.net/heroku_98e55babe082294?reconnect=true
+#production:
+ # <<: *default
+  #database: heroku_98e55babe082294
+  #username: bdcdfb57806a30
+  #password: 27492de9
+
 production:
-  <<: *default
-  database: mysite_production
-  username: mysite
-  password: <%= ENV['MYSITE_DATABASE_PASSWORD'] %>
+ url: <%= ENV['DATABASE_URL'] %>
